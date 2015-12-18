@@ -162,27 +162,7 @@ public class Panel extends JPanel implements ActionListener {
 			yMove = -yMove;
 		}
 		for(Enemy enemy: enemies){
-			int tempSpeed = r.nextInt(5);
-			if(enemy.getxEnemy()> x){
-				eXMove = -tempSpeed;
-				eYMove = 0;
-			}
-			else if(enemy.getxEnemy()< x){
-				eXMove = tempSpeed;
-				eYMove = 0;
-
-			}
-			else if(enemy.getyEnemy()> y){
-				eXMove = 0;
-				eYMove = -tempSpeed;
-			}
-			else if(enemy.getyEnemy()< y){
-				eXMove = 0;
-				eYMove = tempSpeed;
-			}
-			enemy.moveEnemyX(enemy.getxEnemy()+eXMove);
-			enemy.moveEnemyY(enemy.getyEnemy()+eYMove);
-
+			enemy.moveEnemyAI(x, y);
 		}
 		
 		x += xMove;
