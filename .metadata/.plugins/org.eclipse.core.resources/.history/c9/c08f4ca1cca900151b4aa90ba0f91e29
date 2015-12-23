@@ -5,6 +5,7 @@ public class Enemy {
 	private int eYMove;
 	public int xEnemy, yEnemy;
 	public Random r;
+	private int tempSpeed = 1;
 	private int AI;
 	public int getxEnemy() {
 		return xEnemy;
@@ -21,6 +22,7 @@ public class Enemy {
 	}
 	public Enemy(){
 		r = new Random();
+		tempSpeed = r.nextInt(3);
 		AI = r.nextInt(3);
 	}
 	public void moveEnemyY(int moveEnemy) {
@@ -31,38 +33,38 @@ public class Enemy {
 	}
 	public void regularEnemyAI(int x, int y) {
 		if(this.getxEnemy()> x && this.getyEnemy()> y){
-			eXMove = -1;
-			eYMove = -1;
+			eXMove = -tempSpeed;
+			eYMove = -tempSpeed;
 		}
 		else if(this.getxEnemy()< x && this.getyEnemy()> y){
-			eXMove = 1;
-			eYMove = -1;
+			eXMove = tempSpeed;
+			eYMove = -tempSpeed;
 
 		}
 		else if(this.getyEnemy()> y && this.getxEnemy() == x){
 			eXMove = 0;
-			eYMove = -1;
+			eYMove = -tempSpeed;
 		}
 		else if(this.getyEnemy() == y && this.getxEnemy()> x){
 			eXMove = 0;
-			eYMove = 1;
+			eYMove = tempSpeed;
 		}
 		if(this.getxEnemy()> x && this.getyEnemy()< y){
-			eXMove = -1;
-			eYMove = 1;
+			eXMove = -tempSpeed;
+			eYMove = tempSpeed;
 		}
 		else if(this.getxEnemy()< x && this.getyEnemy()< y){
-			eXMove = 1;
-			eYMove = 1;
+			eXMove = tempSpeed;
+			eYMove = tempSpeed;
 
 		}
 		else if(this.getyEnemy() == y && this.getxEnemy() < x){
 			eXMove = 0;
-			eYMove = 1;
+			eYMove = tempSpeed;
 		}
 		else if(this.getyEnemy()< y && this.getxEnemy() == x){
 			eXMove = 0;
-			eYMove = 1;
+			eYMove = tempSpeed;
 		}
 		
 		this.moveEnemyX(this.getxEnemy()+eXMove);
@@ -70,11 +72,11 @@ public class Enemy {
 	}
 	public void backandforthEnemyAI(int x, int y) {
 		if(this.getxEnemy()> x){
-			eXMove = -1;
+			eXMove = -tempSpeed;
 			eYMove = 0;
 		}
 		else if(this.getxEnemy()< x){
-			eXMove = 1;
+			eXMove = tempSpeed;
 			eYMove = 0;
 
 		}
@@ -88,11 +90,11 @@ public class Enemy {
 	public void verticalEnemyAI(int x, int y){
 		if(this.getyEnemy()> y){
 			eXMove = 0;
-			eYMove = -1;
+			eYMove = -tempSpeed;
 		}
 		else if(this.getyEnemy()< y){
 			eXMove = 0;
-			eYMove = 1;
+			eYMove = tempSpeed;
 
 		}
 		else if(this.getyEnemy() == y){

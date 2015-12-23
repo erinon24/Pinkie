@@ -12,7 +12,7 @@ public class GUI extends Canvas {
 		Panel frame = new Panel();
 		boolean isRunning = true;
 		long lastLoopTime = System.nanoTime();
-		final int TARGET_FPS = 240;
+		final int TARGET_FPS = 120;
 		final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
 		int fps = 0;
 		long lastFpsTime = 0;

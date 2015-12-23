@@ -5,6 +5,7 @@ public class Enemy {
 	private int eYMove;
 	public int xEnemy, yEnemy;
 	public Random r;
+	private int tempSpeed;
 	private int AI;
 	public int getxEnemy() {
 		return xEnemy;
@@ -21,6 +22,7 @@ public class Enemy {
 	}
 	public Enemy(){
 		r = new Random();
+		tempSpeed = r.nextInt(5);
 		AI = r.nextInt(3);
 	}
 	public void moveEnemyY(int moveEnemy) {
@@ -30,51 +32,53 @@ public class Enemy {
 		xEnemy = moveEnemy;
 	}
 	public void regularEnemyAI(int x, int y) {
+		int tempSpeed = r.nextInt(4);
 		if(this.getxEnemy()> x && this.getyEnemy()> y){
-			eXMove = -1;
-			eYMove = -1;
+			eXMove = -tempSpeed;
+			eYMove = -tempSpeed;
 		}
 		else if(this.getxEnemy()< x && this.getyEnemy()> y){
-			eXMove = 1;
-			eYMove = -1;
+			eXMove = tempSpeed;
+			eYMove = -tempSpeed;
 
 		}
 		else if(this.getyEnemy()> y && this.getxEnemy() == x){
 			eXMove = 0;
-			eYMove = -1;
+			eYMove = -tempSpeed;
 		}
 		else if(this.getyEnemy() == y && this.getxEnemy()> x){
 			eXMove = 0;
-			eYMove = 1;
+			eYMove = tempSpeed;
 		}
 		if(this.getxEnemy()> x && this.getyEnemy()< y){
-			eXMove = -1;
-			eYMove = 1;
+			eXMove = -tempSpeed;
+			eYMove = tempSpeed;
 		}
 		else if(this.getxEnemy()< x && this.getyEnemy()< y){
-			eXMove = 1;
-			eYMove = 1;
+			eXMove = tempSpeed;
+			eYMove = tempSpeed;
 
 		}
 		else if(this.getyEnemy() == y && this.getxEnemy() < x){
 			eXMove = 0;
-			eYMove = 1;
+			eYMove = tempSpeed;
 		}
 		else if(this.getyEnemy()< y && this.getxEnemy() == x){
 			eXMove = 0;
-			eYMove = 1;
+			eYMove = tempSpeed;
 		}
 		
 		this.moveEnemyX(this.getxEnemy()+eXMove);
 		this.moveEnemyY(this.getyEnemy()+eYMove);
 	}
 	public void backandforthEnemyAI(int x, int y) {
+		int tempSpeed = r.nextInt(5);
 		if(this.getxEnemy()> x){
-			eXMove = -1;
+			eXMove = -tempSpeed;
 			eYMove = 0;
 		}
 		else if(this.getxEnemy()< x){
-			eXMove = 1;
+			eXMove = tempSpeed;
 			eYMove = 0;
 
 		}
@@ -86,13 +90,14 @@ public class Enemy {
 		this.moveEnemyX(this.getxEnemy()+eXMove);
 	}
 	public void verticalEnemyAI(int x, int y){
+		int tempSpeed = r.nextInt(5);
 		if(this.getyEnemy()> y){
 			eXMove = 0;
-			eYMove = -1;
+			eYMove = -tempSpeed;
 		}
 		else if(this.getyEnemy()< y){
 			eXMove = 0;
-			eYMove = 1;
+			eYMove = tempSpeed;
 
 		}
 		else if(this.getyEnemy() == y){

@@ -38,9 +38,9 @@ public class HelpFrame extends JFrame {
     		+ "  Manuver him by using the arrow keys\n"
     		+ "  Pinkie only has one life, but there are five levels\n"
     		+ "  Good luck!"
-    		+ "\n\n Lives: " + Panel.getPinkieLives(), 12, 30);
+    		+ "\n\n Lives: ", 12, 30);
     for(int i =0; i < Panel.getPinkieLives(); i++){
-    	//put in fun graphic here
+    	
     }
     JTextArea funny = new JTextArea("Too much pink?", 2, 2);
     funny.setForeground(Color.white);
