@@ -17,8 +17,6 @@ import java.awt.event.MouseMotionListener;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.Random;
-
-import javax.swing.Timer;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -28,7 +26,7 @@ import javax.swing.JPanel;
 
 
 
-public class Panel extends JPanel implements ActionListener {
+public class Panel extends JPanel {
 	private ImageIcon goat;
 	public kListener kListener = new kListener();
 	private Color pinkieColor;
@@ -37,7 +35,6 @@ public class Panel extends JPanel implements ActionListener {
 	boolean badCollision = false, goodCollision = false;
 	public int x = 8, y = 8, xMove = 0, yMove = 0, level, eXMove=0, eYMove=0;
 	double x2 = 22, y2 = 13, x3 = 32, y3 = 13, x4 = 23, y4 = 23;
-	private Timer moveTime;
 	private JButton playAgain;
 	private Random r = new Random();
 	public Rectangle rect, rect1;
@@ -47,8 +44,6 @@ public class Panel extends JPanel implements ActionListener {
 	private bListener listen;
 	private JFrame frame;
 	private ImageIcon i1, i2;
-
-	
 	
 	public Panel() {
 		frame = new JFrame();
@@ -65,10 +60,29 @@ public class Panel extends JPanel implements ActionListener {
 		addKeyListener(kListener);
 		setFocusTraversalKeysEnabled(false);
 		listen = new bListener();
-		moveTime = new Timer(5, this);
-		moveTime.start();
-
 		init();
+	}
+	
+	public void step() {
+		if(x<0 || x>760) {
+			xMove = -xMove;
+		}
+		if(y<0 || y>760) {
+			yMove = -yMove;
+		}
+		for(Enemy enemy: enemies){
+			enemy.moveEnemyAI(x, y);
+		}
+		
+		x += xMove;
+		x2 += xMove;
+		x3 += xMove;
+		x4 += xMove;
+		y += yMove;
+		y2 += yMove;
+		y3 += yMove;
+		y4 +=yMove;
+		collision();
 	}
 	
 	public void gameOver(){
@@ -79,8 +93,6 @@ public class Panel extends JPanel implements ActionListener {
 		playAgain = new JButton("Play Again?");
 		playAgain.setFocusable(true);
 		playAgain.addActionListener(listen);
-
-
 		add(gameOver);
 		add(Box.createVerticalGlue());
 		add(playAgain);
@@ -127,6 +139,7 @@ public class Panel extends JPanel implements ActionListener {
 
 		
 	}
+	
 	public void totalRestart(){
 		this.removeAll();
 		setBackground(Color.BLACK);
@@ -139,6 +152,7 @@ public class Panel extends JPanel implements ActionListener {
 		validate();
 		repaint();
 	}
+	
 	public void initLevel(){
 		restartGame();
 		int enemyNum = level;
@@ -152,37 +166,7 @@ public class Panel extends JPanel implements ActionListener {
 		}
 	}
 
-
-	public void actionPerformed(ActionEvent e) {
-		if(x<0 || x>760) {
-			xMove = -xMove;
-		}
-		if(y<0 || y>760) {
-			yMove = -yMove;
-		}
-		for(Enemy enemy: enemies){
-			enemy.moveEnemyAI(x, y);
-		}
-		
-		x += xMove;
-		x2 += xMove;
-		x3 += xMove;
-		x4 += xMove;
-		y += yMove;
-		y2 += yMove;
-		y3 += yMove;
-		y4 +=yMove;
-		collision();
-
-		repaint();
-
-
-
-	}
-
 	public void up() {
-		moveTime.setDelay(5);
-
 		xMove = 0;
 		yMove = -4;
 		pinkieColor = Color.PINK;
@@ -190,8 +174,6 @@ public class Panel extends JPanel implements ActionListener {
 	}
 
 	public void down() {
-		moveTime.setDelay(5);
-
 		xMove = 0;
 		yMove = 4;
 		pinkieColor = Color.PINK;
@@ -200,8 +182,6 @@ public class Panel extends JPanel implements ActionListener {
 	}
 
 	public void right() {
-		moveTime.setDelay(5);
-
 		xMove = 4;
 		yMove = 0;
 		pinkieColor = Color.PINK;
@@ -210,9 +190,7 @@ public class Panel extends JPanel implements ActionListener {
 	}
 
 	public void left() {
-		moveTime.setDelay(5);
 		running = true;
-
 		xMove = -4;
 		yMove = 0;
 		pinkieColor = Color.PINK;
@@ -220,7 +198,6 @@ public class Panel extends JPanel implements ActionListener {
 	}
 	public void stopIt(){
 		pinkieColor = Color.red;
-
 		xMove = 0;
 		yMove = 0;
 	}
@@ -314,8 +291,6 @@ public class Panel extends JPanel implements ActionListener {
 
 	}
 
-
-
 	private void Enemies(java.awt.Graphics g){
 		goat = new ImageIcon("goat.png");
 		for(Enemy enemy: enemies){
@@ -324,7 +299,6 @@ public class Panel extends JPanel implements ActionListener {
 			goat.paintIcon(this, g, enemy.getxEnemy(), enemy.getyEnemy());
 		}
 	}
-
 
 	void collision() {
 		Rectangle rectangle1 = new Rectangle(x, y, 40, 40).getBounds(); 
@@ -344,6 +318,7 @@ public class Panel extends JPanel implements ActionListener {
 		}
 
 	}
+	
 	private class bListener implements ActionListener {
 
 		@Override

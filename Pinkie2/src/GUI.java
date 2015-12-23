@@ -1,11 +1,4 @@
 import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.awt.image.BufferStrategy;
-
-import javax.swing.JFrame;
 
 public class GUI extends Canvas {
 	static GUI game;
@@ -17,7 +10,37 @@ public class GUI extends Canvas {
 	public GUI(){
 		HelpFrame helpFrame = new HelpFrame();
 		Panel frame = new Panel();
-
+		boolean isRunning = true;
+		long lastLoopTime = System.nanoTime();
+		final int TARGET_FPS = 60;
+		final long OPTIMAL_TIME = 1000000000 / TARGET_FPS;
+		int fps = 0;
+		long lastFpsTime = 0;
+		
+		while (isRunning) {
+			long now = System.nanoTime();
+			long updateLength = now - lastLoopTime;
+			lastLoopTime = now;
+			double delta = updateLength / ((double)OPTIMAL_TIME);
+			
+			lastFpsTime += updateLength;
+			fps++;
+			
+			if (lastFpsTime >= 1000000000) {
+				System.out.println("(FPS: " + fps + ")");
+				lastFpsTime = 0;
+				fps = 0;
+			}
+			
+			frame.step(); // add delta as argument?
+			frame.repaint();
+			try{
+				Thread.sleep( (lastLoopTime-System.nanoTime() + OPTIMAL_TIME)/1000000 );
+			} catch(InterruptedException ex) {
+			    Thread.currentThread().interrupt();
+			}
+		}
+		
 	}
 	 
 }
