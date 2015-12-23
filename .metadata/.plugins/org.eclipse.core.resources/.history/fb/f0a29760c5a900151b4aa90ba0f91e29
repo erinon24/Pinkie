@@ -32,7 +32,7 @@ public class Enemy {
 		xEnemy = moveEnemy;
 	}
 	public void regularEnemyAI(int x, int y) {
-		int tempSpeed = r.nextInt(4);
+		int tempSpeed = r.nextInt(3);
 		if(this.getxEnemy()> x && this.getyEnemy()> y){
 			eXMove = -tempSpeed;
 			eYMove = -tempSpeed;
@@ -82,11 +82,6 @@ public class Enemy {
 			eYMove = 0;
 
 		}
-		else if(this.getxEnemy() == x){
-			eXMove = 0;
-			eYMove = 0;
-
-		}
 		this.moveEnemyX(this.getxEnemy()+eXMove);
 	}
 	public void verticalEnemyAI(int x, int y){
@@ -99,10 +94,6 @@ public class Enemy {
 			eXMove = 0;
 			eYMove = tempSpeed;
 
-		}
-		else if(this.getyEnemy() == y){
-			eXMove = 0;
-			eYMove = 0;
 		}
 		this.moveEnemyY(this.getyEnemy()+eYMove);
 	}

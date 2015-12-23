@@ -9,7 +9,6 @@ INDEX VERSION 1.127+C:\Users\User\Documents\GitHub\Pinkie\.metadata\.plugins\org
 3414683811.index
 452330869.index
 2899965704.index
-922421542.index
 1233791618.index
 2292250293.index
 51467596.index

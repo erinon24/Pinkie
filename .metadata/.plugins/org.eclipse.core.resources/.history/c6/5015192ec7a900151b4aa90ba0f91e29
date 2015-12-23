@@ -32,7 +32,7 @@ public class Enemy {
 		xEnemy = moveEnemy;
 	}
 	public void regularEnemyAI(int x, int y) {
-		int tempSpeed = r.nextInt(4);
+		int tempSpeed = r.nextInt(3);
 		if(this.getxEnemy()> x && this.getyEnemy()> y){
 			eXMove = -tempSpeed;
 			eYMove = -tempSpeed;

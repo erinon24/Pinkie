@@ -37,11 +37,7 @@ public class HelpFrame extends JFrame {
     		+ " Save him from the Ghoasts by guiding him towards the light \n"
     		+ "  Manuver him by using the arrow keys\n"
     		+ "  Pinkie only has one life, but there are five levels\n"
-    		+ "  Good luck!"
-    		+ "\n\n Lives: ", 12, 30);
-    for(int i =0; i < Panel.getPinkieLives(); i++){
-    	
-    }
+    		+ "  Good luck!", 12, 30);
     JTextArea funny = new JTextArea("Too much pink?", 2, 2);
     funny.setForeground(Color.white);
     funny.setFont(new Font("Courier", Font.PLAIN, 15));  

@@ -31,12 +31,11 @@ import javax.swing.JPanel;
 public class Panel extends JPanel implements ActionListener {
 	private ImageIcon goat;
 	public kListener kListener = new kListener();
-	private static Color pinkieColor;
+	private Color pinkieColor;
 	private ArrayList<Enemy> enemies;
 	private Enemy e1;
 	boolean badCollision = false, goodCollision = false;
-	public int x = 8, y = 8, xMove = 0, yMove = 0, level, eXMove=0, eYMove=0;
-	public static int pinkieLives;
+	public int x = 8, y = 8, xMove = 0, yMove = 0, level, eXMove=0, eYMove=0, pinkieLevel;
 	double x2 = 22, y2 = 13, x3 = 32, y3 = 13, x4 = 23, y4 = 23;
 	private Timer moveTime;
 	private JButton playAgain;
@@ -71,23 +70,7 @@ public class Panel extends JPanel implements ActionListener {
 
 		init();
 	}
-	public void startScreen(){
-		setFocusable(true);
-		setBackground(Color.white);
-		i1 = new ImageIcon("GameOver.png");
-		gameOver = new JLabel(i1);
-		playAgain = new JButton("Play Again?");
-		playAgain.setFocusable(true);
-		playAgain.addActionListener(listen);
-
-
-		add(gameOver);
-		add(Box.createVerticalGlue());
-		add(playAgain);
-
-		validate();	
-	}
-
+	
 	public void gameOver(){
 		setFocusable(true);
 		setBackground(Color.white);
@@ -118,7 +101,8 @@ public class Panel extends JPanel implements ActionListener {
 		validate();
 	}
 	public void init(){
-		pinkieLives = 3;
+		pinkieLevel = 3;
+		pinkieColor = Color.PINK;
 		level = 1;
 		e1 = new Enemy();
 		enemies = new ArrayList<Enemy>();
@@ -202,6 +186,7 @@ public class Panel extends JPanel implements ActionListener {
 
 		xMove = 0;
 		yMove = -4;
+		pinkieColor = Color.PINK;
 		running = true;
 	}
 
@@ -210,6 +195,7 @@ public class Panel extends JPanel implements ActionListener {
 
 		xMove = 0;
 		yMove = 4;
+		pinkieColor = Color.PINK;
 		running = true;
 
 	}
@@ -219,6 +205,7 @@ public class Panel extends JPanel implements ActionListener {
 
 		xMove = 4;
 		yMove = 0;
+		pinkieColor = Color.PINK;
 		running = true;
 
 	}
@@ -229,9 +216,11 @@ public class Panel extends JPanel implements ActionListener {
 
 		xMove = -4;
 		yMove = 0;
+		pinkieColor = Color.PINK;
 
 	}
 	public void stopIt(){
+		pinkieColor = Color.red;
 
 		xMove = 0;
 		yMove = 0;
@@ -244,20 +233,24 @@ public class Panel extends JPanel implements ActionListener {
 
 			if (input == KeyEvent.VK_UP) {
 				up();
+				pinkieColor = Color.pink;
 
 			}
 
 			else if (input == KeyEvent.VK_DOWN) {
 				down();
+				pinkieColor = Color.pink;
 
 			}
 
 			else if (input == KeyEvent.VK_RIGHT) {
 				right();
+				pinkieColor = Color.pink;
 			}
 
 			else if (input == KeyEvent.VK_LEFT) {
 				left();
+				pinkieColor = Color.pink;
 			}
 
 		}
@@ -282,12 +275,12 @@ public class Panel extends JPanel implements ActionListener {
 		Door(g);
 
 		if(badCollision == true){
-			pinkieLives = pinkieLives -1;
+			pinkieLevel = pinkieLevel -1;
 
-			if(pinkieLives>0){
+			if(pinkieLevel>0){
 				initLevel();
 			}
-			else if(pinkieLives == 0){
+			else if(pinkieLevel == 0){
 				gameOver();
 			}
 			badCollision = false;
@@ -366,16 +359,6 @@ public class Panel extends JPanel implements ActionListener {
 		}
 			
 		}
-
-
-	public static void setPinkieColor(Color pink) {
-		// TODO Auto-generated method stub
-		pinkieColor = pink;
-		
-	}
-	public static int getPinkieLives(){
-		return pinkieLives;
-	}
 	}
 
 
