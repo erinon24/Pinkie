@@ -96,6 +96,8 @@ public class Panel extends JPanel implements ActionListener {
 		playAgain = new JButton("Play Again?");
 		playAgain.addActionListener(listen);
 		playAgain.setFocusable(true);
+		//button was being invalidated by timer, fixed
+		//timer was being compounded each init, fixed
 		add(playAgain);
 		add(youWin);
 		validate();

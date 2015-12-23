@@ -23,7 +23,7 @@ public class Enemy {
 	public Enemy(){
 		r = new Random();
 		tempSpeed = r.nextInt(5);
-		AI = r.nextInt(3);
+		AI = r.nextInt(2);
 	}
 	public void moveEnemyY(int moveEnemy) {
 		yEnemy = moveEnemy;
@@ -66,26 +66,11 @@ public class Enemy {
 		}
 		this.moveEnemyX(this.getxEnemy()+eXMove);
 	}
-	public void verticalEnemyAI(int x, int y){
-		int tempSpeed = r.nextInt(5);
-		if(this.getyEnemy()> y){
-			eXMove = 0;
-			eYMove = -tempSpeed;
-		}
-		else if(this.getyEnemy()< y){
-			eXMove = 0;
-			eYMove = tempSpeed;
-
-		}
-		this.moveEnemyY(this.getyEnemy()+eYMove);
-	}
 	public void moveEnemyAI(int x, int y) {
 		switch(AI) {
 		case 0: regularEnemyAI(x, y);
 				break;
 		case 1:	backandforthEnemyAI(x, y);
-				break;
-		case 2: verticalEnemyAI(x,y);
 				break;
 		}
 	}

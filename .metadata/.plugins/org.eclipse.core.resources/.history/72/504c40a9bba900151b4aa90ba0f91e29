@@ -23,7 +23,7 @@ public class Enemy {
 	public Enemy(){
 		r = new Random();
 		tempSpeed = r.nextInt(5);
-		AI = r.nextInt(3);
+		AI = r.nextInt(2);
 	}
 	public void moveEnemyY(int moveEnemy) {
 		yEnemy = moveEnemy;
