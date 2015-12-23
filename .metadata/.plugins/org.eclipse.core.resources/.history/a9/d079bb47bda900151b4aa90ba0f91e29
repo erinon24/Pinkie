@@ -32,42 +32,24 @@ public class Enemy {
 		xEnemy = moveEnemy;
 	}
 	public void regularEnemyAI(int x, int y) {
-		int tempSpeed = r.nextInt(3);
-		if(this.getxEnemy()> x && this.getyEnemy()> y){
+		int tempSpeed = r.nextInt(5);
+		if(this.getxEnemy()> x){
 			eXMove = -tempSpeed;
-			eYMove = -tempSpeed;
+			eYMove = 0;
 		}
-		else if(this.getxEnemy()< x && this.getyEnemy()> y){
+		else if(this.getxEnemy()< x){
 			eXMove = tempSpeed;
-			eYMove = -tempSpeed;
+			eYMove = 0;
 
 		}
-		else if(this.getyEnemy()> y && this.getxEnemy() == x){
+		else if(this.getyEnemy()> y){
 			eXMove = 0;
 			eYMove = -tempSpeed;
 		}
-		else if(this.getyEnemy() == y && this.getxEnemy()> x){
+		else if(this.getyEnemy()< y){
 			eXMove = 0;
 			eYMove = tempSpeed;
 		}
-		if(this.getxEnemy()> x && this.getyEnemy()< y){
-			eXMove = -tempSpeed;
-			eYMove = tempSpeed;
-		}
-		else if(this.getxEnemy()< x && this.getyEnemy()< y){
-			eXMove = tempSpeed;
-			eYMove = tempSpeed;
-
-		}
-		else if(this.getyEnemy() == y && this.getxEnemy() < x){
-			eXMove = 0;
-			eYMove = tempSpeed;
-		}
-		else if(this.getyEnemy()< y && this.getxEnemy() == x){
-			eXMove = 0;
-			eYMove = tempSpeed;
-		}
-		
 		this.moveEnemyX(this.getxEnemy()+eXMove);
 		this.moveEnemyY(this.getyEnemy()+eYMove);
 	}
